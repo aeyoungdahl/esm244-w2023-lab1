@@ -1,0 +1,19 @@
+---
+title: "ESM244_Lab1"
+author: "Anne Youngdahl"
+date: "2023-01-13"
+output: html_document
+---
+
+```{r setup, include=TRUE, echo=TRUE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE) 
+# this controls options for all subsequent chunks.
+# true/false controls what shows up in final document. 
+
+#attach packages
+library(tidyverse)
+library(here)
+library(sf) # clean package for working with spatial data
+library(tmap) # for visualizing map data
+```
+
