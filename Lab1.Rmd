@@ -10,10 +10,35 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 # this controls options for all subsequent chunks.
 # true/false controls what shows up in final document. 
 
-#attach packages
+# attach packages
 library(tidyverse)
 library(here)
 library(sf) # clean package for working with spatial data
 library(tmap) # for visualizing map data
 ```
+
+### Read in data
+
+```{r}
+
+#read in data
+sf_trees <- read_csv(here('data', 'sf_trees', 'sf_trees.csv'))
+
+# practice with dplyr and tidyverse functions
+top_5_status <- sf_trees %>% 
+  group_by(legal_status) %>% 
+  summarize(tree_count = n()) %>% 
+  slice_max(tree_count, n = 5) %>%    #find the max five, slice out
+  arrange(-tree_count)
+
+#plot practice
+ggplot(data = top_5_status, aes(x = fct_reorder(legal_status, tree_count), y = tree_count)) + 
+  geom_col() + 
+  labs(y = 'Tree Count', x = 'Legal Status') + 
+  coord_flip() + 
+  theme_minimal()
+
+
+```
+
 
